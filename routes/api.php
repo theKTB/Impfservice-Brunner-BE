@@ -20,7 +20,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('vaccinations',[VaccinationController::class,'getAllVaccinations']);
-Route::get('vaccinations/{id}',[VaccinationController::class,'findById']);
-Route::get('vaccinations/{id}',[VaccinationController::class,'findById']);
+Route::get('vaccination/{id}',[VaccinationController::class,'findById']);
 Route::get('vaccinations/location/{locationId}', [VaccinationController::class, 'findByLocation']);
+
+Route::post('vaccination',[VaccinationController::class,'save']);
+Route::put('vaccination/{id}',[VaccinationController::class,'update']);
+Route::delete('vaccination/{id}',[VaccinationController::class,'delete']);
 
