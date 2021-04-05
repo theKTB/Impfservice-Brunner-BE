@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="9e4f726d-5b13-48d6-bcce-fa7221ff8759" name="HETZNER" url="http://impfservice-brunner21.s1810456006.student.kwmhgb.at/">
+        <fileTransfer rootFolder="/usr/home/sstud277/public_html/impfservice-brunner21/impfserviceServer" accessType="SFTP" host="s1810456006.student.kwmhgb.at" port="222" sshConfigId="8e48ce93-c2d9-4f2c-8d3e-a8dc772d8d3b" sshConfig="sstud277@s1810456006.student.kwmhgb.at:222 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
