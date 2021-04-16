@@ -16,9 +16,8 @@ class CreateVaccinationsTable extends Migration
         Schema::create('vaccinations', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->date('date');
-            $table->time('from');
-            $table->time('to');
+            $table->dateTime('from');
+            $table->dateTime('to');
             $table->integer('maxPatients');
 
             // Cascade not necessary (don't delete user when date is deleted)
