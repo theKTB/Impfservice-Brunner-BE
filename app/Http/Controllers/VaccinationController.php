@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use Illuminate\Http\Request;
 use App\Models\Vaccination;
 use Illuminate\Http\JsonResponse;
@@ -30,9 +31,9 @@ class VaccinationController extends Controller
     /**
      * create new vaccination
      */
-    public function save(Request $request) : JsonResponse  {
-        //$request = $this->parseRequest($request)
-        //TODO: Zeitparsing noch ansehen!
+    public function create(Request $request) : JsonResponse  {
+        $request = $this->parseRequest($request);
+
         /*+
         *  use a transaction for saving model including relations
         * if one query fails, complete SQL statements will be rolled back
@@ -59,7 +60,7 @@ class VaccinationController extends Controller
             $vaccination = Vaccination::with(['location'])
                 ->where('id', $id)->first();
             if ($vaccination != null) {
-                //$request = $this->parseRequest($request);
+                $request = $this->parseRequest($request);
                 $vaccination->update($request->all());
                 $vaccination->save();
             }
@@ -91,8 +92,6 @@ class VaccinationController extends Controller
     }
 
 
-
-
     /**
      * Hilfsmethode
      * modify / convert values if needed
@@ -100,8 +99,10 @@ class VaccinationController extends Controller
 
     private function parseRequest(Request $request) : Request {
         // get date and convert it - its in ISO 8601, e.g. "2018-01-01T23:00:00.000Z"
-        $date = new \DateTime($request->published);
-        $request['published'] = $date;
+        $from = new \DateTime($request->from);
+        $to = new \DateTime($request->to);
+        $request['from'] = $from;
+        $request['to'] = $to;
         return $request;
     }
 

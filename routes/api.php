@@ -23,7 +23,7 @@ Route::get('vaccinations',[VaccinationController::class,'getAllVaccinations']);
 Route::get('vaccination/{id}',[VaccinationController::class,'findById']);
 Route::get('vaccinations/location/{locationId}', [VaccinationController::class, 'findByLocation']);
 
-Route::post('vaccination',[VaccinationController::class,'save']);
+Route::post('vaccination',[VaccinationController::class, 'create']);
 Route::put('vaccination/{id}',[VaccinationController::class,'update']);
 Route::delete('vaccination/{id}',[VaccinationController::class,'delete']);
 
