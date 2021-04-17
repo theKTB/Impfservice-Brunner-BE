@@ -16,7 +16,7 @@ class UsersTableSeeder extends Seeder
     {
         //test user
         $user = new User;
-        $user->ssNo = "3273301291";
+        $user->socialNumber = "3273301291";
         $user->firstName = "Kathrin";
         $user->lastName = "Brunner";
         $user->gender = "w";
