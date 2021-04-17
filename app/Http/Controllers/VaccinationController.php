@@ -16,6 +16,8 @@ class VaccinationController extends Controller
         return $vaccinations;
     }
 
+
+
     public function findByLocation(string $id)
     {
         $vaccinations = Vaccination::where('location_id', $id)->with(['location'])->get();

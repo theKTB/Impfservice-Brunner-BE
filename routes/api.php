@@ -27,3 +27,5 @@ Route::post('vaccination',[VaccinationController::class, 'create']);
 Route::put('vaccination/{id}',[VaccinationController::class,'update']);
 Route::delete('vaccination/{id}',[VaccinationController::class,'delete']);
 
+
+
