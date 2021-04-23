@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Impfservice-Brunner.iml" filepath="$PROJECT_DIR$/.idea/Impfservice-Brunner.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Web-Entwicklung_Architekturen-Frameworks/.idea/Web-Entwicklung_Architekturen-Frameworks.iml" filepath="$PROJECT_DIR$/../Web-Entwicklung_Architekturen-Frameworks/.idea/Web-Entwicklung_Architekturen-Frameworks.iml" />
     </modules>
   </component>
 </project>
