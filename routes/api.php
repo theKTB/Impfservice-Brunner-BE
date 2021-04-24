@@ -33,7 +33,7 @@ Route::get('user/{socialNumber}',[UserController::class, 'getUserBySocialNumber'
 //login
 Route::post('auth/login',[AuthController::class,'login']);
 
-Route::group(['middleware' =>['api','cors','jwt']], function(){
+Route::group(['middleware' =>['api','cors','auth.jwt']], function(){
     //Hier kommen alle abgesicherten Routen rein
     Route::post('vaccination',[VaccinationController::class, 'create']);
     Route::put('vaccination/{id}',[VaccinationController::class,'update']);
