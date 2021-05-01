@@ -19,7 +19,7 @@ class UserController extends Controller
 
     public function getUserById(string $id)
     {
-        $user = User::where('id', $id)->with(['location'])->get()->first();
+        $user = User::where('id', $id)->with(['vaccination'])->get()->first();
         return $user;
     }
 

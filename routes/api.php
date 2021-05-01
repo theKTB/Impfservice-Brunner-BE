@@ -35,7 +35,7 @@ Route::group(['middleware' =>['api','cors','auth.jwt']], function(){
     Route::delete('vaccination/{id}',[VaccinationController::class,'delete']);
     Route::post('auth/logout',[AuthController::class,'logout']);
     Route::get('users',[UserController::class,'getAllUsers']);
-    Route::get('user/{id}',[UserController::class, 'getUserById']);
+    Route::get('users/{id}',[UserController::class, 'getUserById']);
 });
 
 
