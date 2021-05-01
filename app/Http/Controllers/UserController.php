@@ -17,9 +17,9 @@ class UserController extends Controller
         return $users;
     }
 
-    public function getUserBySocialNumber(string $socialNumber)
+    public function getUserById(string $id)
     {
-        $user = User::where('socialNumber', $socialNumber)->with(['location'])->get()->first();
+        $user = User::where('id', $id)->with(['location'])->get()->first();
         return $user;
     }
 

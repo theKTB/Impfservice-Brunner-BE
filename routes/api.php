@@ -25,11 +25,6 @@ Route::get('vaccinations',[VaccinationController::class,'getAllVaccinations']);
 Route::get('vaccinations/{id}',[VaccinationController::class, 'getVaccinationById']);
 Route::get('vaccinations/location/{locationId}', [VaccinationController::class, 'getVaccinationsByLocation']);
 
-
-
-Route::get('users',[UserController::class,'getAllUsers']);
-Route::get('user/{socialNumber}',[UserController::class, 'getUserBySocialNumber']);
-
 //login
 Route::post('auth/login',[AuthController::class,'login']);
 
@@ -39,6 +34,8 @@ Route::group(['middleware' =>['api','cors','auth.jwt']], function(){
     Route::put('vaccination/{id}',[VaccinationController::class,'update']);
     Route::delete('vaccination/{id}',[VaccinationController::class,'delete']);
     Route::post('auth/logout',[AuthController::class,'logout']);
+    Route::get('users',[UserController::class,'getAllUsers']);
+    Route::get('user/{id}',[UserController::class, 'getUserById']);
 });
 
 
