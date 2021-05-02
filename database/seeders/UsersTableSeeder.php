@@ -30,5 +30,21 @@ class UsersTableSeeder extends Seeder
         //Passwort muss verschlüsselt werden
         $user->password = bcrypt('secret');
         $user->save();
+
+
+        $user1 = new User;
+        $user1->socialNumber = "0000040118";
+        $user1->firstName = "Bobby";
+        $user1->lastName = "Brunner";
+        $user1->gender = "m";
+        $user1->street = "Oberlebing";
+        $user1->houseNumber = "99";
+        $user1->zipCode = "4320";
+        $user1->city = "Allerheiligen im Mühlkreis";
+        $user1->admin = false;
+        $user1->email = "bb@mail.com";
+        //Passwort muss verschlüsselt werden
+        $user1->password = bcrypt('secret');
+        $user1->save();
     }
 }

@@ -23,6 +23,8 @@ class UserController extends Controller
         return $user;
     }
 
+
+
     /**
      * Hilfsmethode
      * modify / convert values if needed

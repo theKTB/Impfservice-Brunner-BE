@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\VaccinationController;
 use \App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LocationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,10 +33,13 @@ Route::group(['middleware' =>['api','cors','auth.jwt']], function(){
     //Hier kommen alle abgesicherten Routen rein
     Route::post('vaccination',[VaccinationController::class, 'create']);
     Route::put('vaccination/{id}',[VaccinationController::class,'update']);
+    Route::put('vaccinations/{id}',[VaccinationController::class,'decrementMaxPatients']);
     Route::delete('vaccination/{id}',[VaccinationController::class,'delete']);
     Route::post('auth/logout',[AuthController::class,'logout']);
     Route::get('users',[UserController::class,'getAllUsers']);
     Route::get('users/{id}',[UserController::class, 'getUserById']);
+    Route::get('locations',[LocationController::class,'getAllLocations()']);
+    Route::get('locations/{id}',[LocationController::class,'getLocationById()']);
 });
 
 
