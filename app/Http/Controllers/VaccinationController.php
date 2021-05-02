@@ -69,7 +69,7 @@ class VaccinationController extends Controller
             DB::commit();
             $vaccination1 = Vaccination::with(['location'])
                 ->where('id', $id)->first();
-            // return a vaild http response
+            // return a valid http response
             return response()->json($vaccination1, 201);
         }
         catch (\Exception $e) {
@@ -96,7 +96,7 @@ class VaccinationController extends Controller
             DB::commit();
             $vaccination1 = Vaccination::with(['location'])
                 ->where('id', $id)->first();
-            // return a vaild http response
+            // return a valid http response
             return response()->json($vaccination1, 201);
         }
         catch (\Exception $e) {

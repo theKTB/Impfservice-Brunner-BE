@@ -9,7 +9,7 @@ class LocationController extends Controller
 {
     public function getAllLocations()
     {
-        $locations = Location::all()->get();
+        $locations = Location::all();
         return $locations;
     }
 
