@@ -23,21 +23,4 @@ class UserController extends Controller
         return $user;
     }
 
-
-
-    /**
-     * Hilfsmethode
-     * modify / convert values if needed
-     */
-
-    private function parseRequest(Request $request): Request
-    {
-        // get date and convert it - its in ISO 8601, e.g. "2018-01-01T23:00:00.000Z"
-        $from = new \DateTime($request->from);
-        $to = new \DateTime($request->to);
-        $request['from'] = $from;
-        $request['to'] = $to;
-        return $request;
-    }
-
 }

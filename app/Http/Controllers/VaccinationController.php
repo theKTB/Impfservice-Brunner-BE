@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use DateTime;
 use Illuminate\Http\Request;
 use App\Models\Vaccination;
@@ -118,6 +119,36 @@ class VaccinationController extends Controller
         else
             throw new \Exception("vaccination couldn't be deleted - it does not exist");
         return response()->json('vaccination (' . $id . ') successfully deleted', 200);
+    }
+
+
+
+    public function associateVaccination(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $user = User::where('id', $request->userId)->first();
+            $vaccination = Vaccination::where('id', $request->vaccinationId)->first();
+            if ($user != null) {
+                if($user->vaccination_id == null){
+                    $user->vaccination()->associate($vaccination);
+                    $user->save();
+                } else {
+                    return response()->json("user has already a vaccination", 201);
+                }
+            }
+            DB::commit();
+            //$user1 = User::with(['vaccination'])->where('id', $request->userId)->first();
+            // return a valid http response
+            //return response()->json($user1, 201);
+            return;
+        }
+        catch (\Exception $e) {
+            // rollback all queries
+            DB::rollBack();
+            return response()->json("updating vaccination failed: " . $e->getMessage(), 420);
+        }
+
     }
 
 

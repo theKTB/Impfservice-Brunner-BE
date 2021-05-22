@@ -19,9 +19,7 @@ class CreateVaccinationsTable extends Migration
             $table->dateTime('from');
             $table->dateTime('to');
             $table->integer('maxPatients');
-
-            // Cascade not necessary (don't delete user when date is deleted)
-            $table->foreignId('location_id')->constrained()->onDelete('cascade');
+            $table->foreignId('location_id')->constrained()->onDelete('cascade')->default(1);
         });
     }
 
