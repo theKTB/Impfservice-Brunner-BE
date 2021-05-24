@@ -23,4 +23,29 @@ class UserController extends Controller
         return $user;
     }
 
+    public function vaccinate(string $id)
+    {
+        DB::beginTransaction();
+        try {
+            $user = User::where('id', $id)->first();
+            if ($user != null) {
+                //TODO: Warum wird vaccination_id gesetzt?
+                if($user->vaccination_id =! null && !$user->vaccinated){
+                        $user->vaccinated = true;
+                        $user->save();
+                } else {
+                    return response()->json("user is already vaccinated", 201);
+                }
+            }
+            DB::commit();
+            return response()->json($user, 201);
+        }
+        catch (\Exception $e) {
+            // rollback all queries
+            DB::rollBack();
+            return response()->json("updating vaccination failed: " . $e->getMessage(), 420);
+        }
+
+    }
+
 }

@@ -23,7 +23,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('vaccinations',[VaccinationController::class,'getAllVaccinations']);
-Route::get('vaccination/{id}',[VaccinationController::class, 'getVaccinationById']);
+Route::get('vaccinations/{id}',[VaccinationController::class, 'getVaccinationById']);
 Route::get('vaccinations/location/{locationId}', [VaccinationController::class, 'getVaccinationsByLocation']);
 
 
@@ -38,6 +38,7 @@ Route::group(['middleware' =>['api','cors','auth.jwt']], function(){
     Route::post('auth/logout',[AuthController::class,'logout']);
     Route::get('users',[UserController::class,'getAllUsers']);
     Route::get('user/{id}',[UserController::class, 'getUserById']);
+    Route::put('user/{id}',[UserController::class, 'vaccinate']);
     Route::get('locations',[LocationController::class, 'getAllLocations']);
     Route::get('location/{id}',[LocationController::class,'getLocationById()']);
     Route::put('vaccination/{id}/book',[VaccinationController::class, 'associateVaccination']);

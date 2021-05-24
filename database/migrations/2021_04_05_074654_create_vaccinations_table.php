@@ -18,7 +18,7 @@ class CreateVaccinationsTable extends Migration
             $table->timestamps();
             $table->dateTime('from');
             $table->dateTime('to');
-            $table->integer('maxPatients');
+            $table->integer('maxPatients')->default(0);
             $table->foreignId('location_id')->constrained()->onDelete('cascade')->default(1);
         });
     }

@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('zipCode', 4)->nullable();
             $table->string('city')->nullable();
             $table->string('phone')->nullable();
-            $table->boolean('admin')->default(true);
+            $table->boolean('admin')->default(false);
             $table->boolean('vaccinated')->default(false);
             $table->rememberToken();
             $table->timestamps();

@@ -27,7 +27,7 @@ class VaccinationController extends Controller
 
     public function getVaccinationById(string $id)
     {
-        $vaccination = Vaccination::where('id', $id)->with(['location'])->get()->first();
+        $vaccination = Vaccination::where('id', $id)->with(['users', 'location'])->first();
         return $vaccination;
     }
 
@@ -80,33 +80,6 @@ class VaccinationController extends Controller
         }
     }
 
-    public function decrementMaxPatients(string $id) : JsonResponse
-    {
-        DB::beginTransaction();
-        try {
-            $vaccination = Vaccination::where('id', $id)->first();
-            if ($vaccination != null) {
-                $maxPatients = $vaccination['maxPatients'];
-                if($maxPatients > 0){
-                    $vaccination->maxPatients = ((int)$maxPatients - 1);
-                    $vaccination->save();
-                } else {
-                    return response()->json("max patients is 0", 201);
-                }
-            }
-            DB::commit();
-            $vaccination1 = Vaccination::with(['location'])
-                ->where('id', $id)->first();
-            // return a valid http response
-            return response()->json($vaccination1, 201);
-        }
-        catch (\Exception $e) {
-            // rollback all queries
-            DB::rollBack();
-            return response()->json("updating vaccination failed: " . $e->getMessage(), 420);
-        }
-    }
-
     /**
      * returns 200 if book deleted successfully, throws excpetion if not
      */
@@ -129,26 +102,29 @@ class VaccinationController extends Controller
         try {
             $user = User::where('id', $request->userId)->first();
             $vaccination = Vaccination::where('id', $request->vaccinationId)->first();
-            if ($user != null) {
+            if ($user != null && $vaccination != null) {
                 if($user->vaccination_id == null){
-                    $user->vaccination()->associate($vaccination);
-                    $user->save();
+                    $maxPatients = $vaccination['maxPatients'];
+                    if($maxPatients > 0){
+                        $user->vaccination()->associate($vaccination);
+                        $user->save();
+                        $vaccination->maxPatients = ((int)$maxPatients - 1);
+                        $vaccination->save();
+                    } else {
+                        return response()->json("max patients is 0", 201);
+                    }
                 } else {
                     return response()->json("user has already a vaccination", 201);
                 }
             }
             DB::commit();
-            //$user1 = User::with(['vaccination'])->where('id', $request->userId)->first();
-            // return a valid http response
-            //return response()->json($user1, 201);
-            return;
+            return response()->json($user, 201);
         }
         catch (\Exception $e) {
             // rollback all queries
             DB::rollBack();
             return response()->json("updating vaccination failed: " . $e->getMessage(), 420);
         }
-
     }
 
 
