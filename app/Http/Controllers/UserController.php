@@ -29,7 +29,7 @@ class UserController extends Controller
         try {
             $user = User::where('id', $id)->first();
             if ($user != null) {
-                if(!$user->vaccination_id && !$user->vaccinated){
+                if($user->vaccination_id && !$user->vaccinated){
                         $user->vaccinated = true;
                         $user->save();
                 } else {

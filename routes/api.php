@@ -24,8 +24,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('vaccinations',[VaccinationController::class,'getAllVaccinations']);
 Route::get('vaccinations/{id}',[VaccinationController::class, 'getVaccinationById']);
-Route::get('vaccinations/location/{locationId}', [VaccinationController::class, 'getVaccinationsByLocation']);
-
 
 //login
 Route::post('auth/login',[AuthController::class,'login']);

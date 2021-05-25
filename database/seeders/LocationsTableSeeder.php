@@ -38,5 +38,29 @@ class LocationsTableSeeder extends Seeder
         $location3->city = "Mauthausen";
         $location3->save();
 
+        $location4 = new Location;
+        $location4->name = "Gemeinde Schwertberg";
+        $location4->street = "Hauptstraße";
+        $location4->houseNumber = "3";
+        $location4->zipCode = "4311";
+        $location4->city = "Schwertberg";
+        $location4->save();
+
+        $location5 = new Location;
+        $location5->name = "Kindergarten Arbing";
+        $location5->street = "Am Schlossberg";
+        $location5->houseNumber = "21";
+        $location5->zipCode = "4341";
+        $location5->city = "Arbing";
+        $location5->save();
+
+        $location6 = new Location;
+        $location6->name = "Allerheiligen Gemeindeamt";
+        $location6->street = "Allerheiligen";
+        $location6->houseNumber = "48";
+        $location6->zipCode = "4320";
+        $location6->city = "Allerheiligen";
+        $location6->save();
+
     }
 }
