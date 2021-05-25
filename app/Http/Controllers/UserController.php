@@ -29,8 +29,7 @@ class UserController extends Controller
         try {
             $user = User::where('id', $id)->first();
             if ($user != null) {
-                //TODO: Warum wird vaccination_id gesetzt?
-                if($user->vaccination_id =! null && !$user->vaccinated){
+                if(!$user->vaccination_id && !$user->vaccinated){
                         $user->vaccinated = true;
                         $user->save();
                 } else {
